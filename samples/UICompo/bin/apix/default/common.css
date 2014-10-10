@@ -1,0 +1,27 @@
+div,p,span {
+	/* remove line below after debug */
+	border:1px dashed #eee;	
+	/*-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;*/
+}
+
+.hide {
+  display: none; }
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
+
+
+/* global classes used by js */
+.apix_do_when_touch {
+	background-color:rgba(200,250,200,.5);
+	-webkit-box-shadow: 2px 2px 4px #aaa ;
+	-moz-box-shadow: 2px 2px 4px #aaa ;
+	-ms-box-shadow: 2px 2px 4px #aaa ;
+	-o-box-shadow: 2px 2px 4px #aaa ;
+	box-shadow: 2px 2px 4px #aaa ;
+}
+	

@@ -1,0 +1,330 @@
+/*!
+* www.KNACSS.com V3.0.3 (2014-05-19) @author: Raphael Goetter, Alsacreations
+* Licence WTFPL http://www.wtfpl.net/
+*/
+
+/* ----------------------------- */
+
+/* == typography                 */
+
+/* ----------------------------- */
+
+/* alternate font-sizing */
+
+.smaller {
+	font-size: 0.71em;
+}
+.small {
+	font-size: 0.86em;
+}
+.big {
+	font-size: 1.14em;
+}
+.bigger {
+	font-size: 1.29em;
+}
+.biggest {
+	font-size: 1.43em;
+}
+
+
+
+/* ----------------------------- */
+
+/* == hiding content             */
+
+/* ----------------------------- */
+
+
+body > script {
+	display: none !important;
+}
+@media (max-width: 480px) {
+	.no-small-screen {
+		display: none;
+	}
+}
+@media (min-width: 1024px) {
+	.no-large-screen {
+		display: none;
+	}
+}
+/* ----------------------------- */
+
+/* == browsers consistency       */
+
+/* ----------------------------- */
+
+/* avoid top margins on first content element */
+
+p:first-child,
+.p-like:first-child,
+ul:first-child,
+ol:first-child,
+dl:first-child,
+blockquote:first-child,
+pre:first-child,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+	margin-top: 0;
+}
+/* avoid margins on nested elements */
+
+li p,
+li .p-like,
+li ul,
+li ol {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+/* max values */
+
+img,
+table,
+td,
+blockquote,
+code,
+pre,
+textarea,
+input,
+video {
+	max-width: 100%;
+}
+
+/* ----------------------------- */
+
+/* ==layout and modules          */
+
+/* ----------------------------- */
+
+/* float layout */
+
+/* module, gains superpower "BFC" Block Formating Context */
+
+.mod {
+	overflow: hidden;
+}
+/* blocks that needs to be placed under floats */
+
+.clear,
+.line,
+.row {
+	clear: both;
+}
+/* blocks that must contain floats */
+
+.clearfix:after,
+.line:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+/* table layout */
+
+.row {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+.row > *,
+.col {
+	display: table-cell;
+	vertical-align: top;
+}
+/* inline-block */
+
+.inbl {
+	display: inline-block;
+	vertical-align: top;
+}
+/* alignments (blocks and inline) */
+
+/* ------------------------------ */
+
+/* left (or starting) elements */
+
+.left,
+.start {
+	float: left;
+}
+img.left,
+img.start {
+	margin-right: 1em;
+}
+/* right (or ending) elements */
+
+.right,
+.end {
+	float: right;
+}
+
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+.txtleft {
+	text-align: left;
+}
+.txtright {
+	text-align: right;
+}
+.txtcenter {
+	text-align: center;
+}
+.w10 {
+	width: 10%;
+}
+.w20 {
+	width: 20%;
+}
+.w25 {
+	width: 25%;
+}
+.w30 {
+	width: 30%;
+}
+.w33 {
+	width: 33.3333%;
+}
+.w40 {
+	width: 40%;
+}
+.w50 {
+	width: 50%;
+}
+.w60 {
+	width: 60%;
+}
+.w66 {
+	width: 66.6666%;
+}
+.w70 {
+	width: 70%;
+}
+.w75 {
+	width: 75%;
+}
+.w80 {
+	width: 80%;
+}
+.w90 {
+	width: 90%;
+}
+.w100 {
+	width: 100%;
+}
+.w50p {
+	width: 50px;
+}
+.w100p {
+	width: 100px;
+}
+.w150p {
+	width: 150px;
+}
+.w200p {
+	width: 200px;
+}
+.w300p {
+	width: 300px;
+}
+.w400p {
+	width: 400px;
+}
+.w500p {
+	width: 500px;
+}
+.w600p {
+	width: 600px;
+}
+.w700p {
+	width: 700px;
+}
+.w800p {
+	width: 800px;
+}
+.w960p {
+	width: 960px;
+}
+.mw960p {
+	max-width: 960px;
+}
+.w1140p {
+	width: 1140px;
+}
+.mw1140p {
+	max-width: 1140px;
+}
+.wauto {
+	width: auto;
+}
+
+
+
+/* flexbox layout 
+Tutorial: http://knacss.com/demos/tutoriel.html#flex */
+
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-h {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.flex-v {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-fluid {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.flex-start {
+  -webkit-box-ordinal-group: 0;
+  -webkit-order: -1;
+  -moz-box-ordinal-group: 0;
+  -ms-flex-order: -1;
+  order: -1;
+}
+
+.flex-mid {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.flex-end {
+  -webkit-box-ordinal-group: 43;
+  -webkit-order: 42;
+  -moz-box-ordinal-group: 43;
+  -ms-flex-order: 42;
+  order: 42;
+}

@@ -1,0 +1,74 @@
+<!-- ---  -->
+<!-- ---  -->
+<!-- ---  -->
+<!-- Slider default skin-->
+<!-- Even if images urls look like stupid, leave ././././ even if you must change by a relative url -->
+<!-- or replace by the real runtime absolute url  -->
+<!-- @see: apix.ui.UICompo.hx  -->
+<!-- ---  --> 
+<!-- ---  -->
+<!-- ---  -->
+<style>
+	.apixSlider_skin3 {
+	  position:relative;
+	  overflow:hidden;
+	  height:20px;	
+	  border:1px solid #bbb;
+	  background-color:rgba(150,255,170,.3);
+	}
+	.apixSlider_skin3:active {
+		cursor:auto;
+		cursor:default;
+	}
+	.apixSlider_skin3 .bounds {
+		position:absolute;
+		height:0px;
+		border-bottom:0px solid rgba(255,0,0,.3);
+		width:88px;	
+		top:10%;
+		left:10%;
+	}
+	.apixSlider_skin3 .bg {
+		position:absolute;
+		overflow:hidden;
+		height:6px;
+		width:100px;
+		left:13px;
+		top:20%;
+		background-image:url(././././asset/bg.png);
+	}
+	.apixSlider_skin3 .but {
+		position:absolute;
+		height:12px;
+		width:12px;
+		top:10%;
+		left:10%;
+		cursor:pointer;
+	}
+	.apixSlider_skin3 .but img {
+		position:absolute;
+		top:0px;
+	}
+	
+</style>
+<!-- ---  -->
+<!-- ---  -->
+<!-- ---  -->
+<!-- you can change contents, names and folder locations -->
+<!--   -> except change the name of this file skin.html  -->
+<!--   -> and keep the images location root tree into the same folder as this file skin.html. ie: img/foo/ is correct but img must be in same level than skin.html  -->
+<!-- div.apix_loader_ctnr is a tempo parent, used for download only ; don't remove it -may be used too for css testing (style=) -->
+<!-- names begining by apix_ are NOT editable, have behaviour -not style- meaning  and must stay here -->
+<!-- ---  -->
+<!-- ---  -->
+<!-- ---  -->
+<div class="apix_loader_ctnr" style="width:100px;">	
+	<div class="apixSlider_skin3">
+		<div class="bounds apix_bounds"></div>
+		<div class="bg"></div>
+		<div  class="but apix_selector"><img draggable="false" src="././././asset/selector.png" alt="selector "/></div>
+	</div>
+</div>
+<!-- ---  -->
+<!-- ---  -->
+<!-- ---  -->

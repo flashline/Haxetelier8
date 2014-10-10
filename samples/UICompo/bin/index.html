@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />  
+		<title>APIX UI</title>
+		<meta name="author" content="Delettre jean-michel" />		
+		
+		<meta name="viewport" content="width=480">
+		<!-- 
+			<meta name="viewport" content="width=480">
+			<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=3"> 
+		-->
+		<!-- Not an obligation but recommended to use these files with apix compos :  -->
+		<link href="extern/normalize.css" rel="stylesheet" /> 	
+		<xlink href="extern/knacc.layout.css" rel="stylesheet" type="text/css"/>
+		<xlink href="extern/foundation.form.css" rel="stylesheet" type="text/css"/>
+		<xlink href="extern/foundation.button.css" rel="stylesheet" type="text/css"/>
+		
+		<!-- used by all apix components -->
+		<link href="apix/default/common.css" rel="stylesheet" type="text/css"/>
+		<!-- vars to haxe -->
+		<script>		
+			var BASE_URL = '';
+			var LANGUAGE_SRC = '';	
+			var MODEL_SRC = '';		
+		</script>
+		<script src="js/getCst.js"></script>
+		<style>
+			body{padding:.5em;}
+			span.valDisplay { display:inline-block;height:20px;width:100px;border:1px solid #000; }
+		</style>
+	</head>
+	<body >		
+		<!-- Slider container -->
+		<span id="mySlider-sel-0" class="valDisplay">&nbsp;</span><span>&nbsp;</span>
+		<span id="mySlider-sel-1" class="valDisplay">&nbsp;</span><span>&nbsp;</span>
+		<span id="mySlider-sel-2" class="valDisplay">&nbsp;</span><span>&nbsp;</span>
+		<div id="slidersCtnrId" style="width:300px;position:relative;" >		
+			<br/>
+		</div>
+		<br/>
+		<input type="text" placeholder="obligatoire" />
+		
+			<button  class="success small"  >GO</button>
+			<button class="secondary small">Stop</button>
+		
+		<br/>
+		<div id="sliderVertiCtnrId" style="height:300px;position:relative;left:5%;" >
+			<span id="sliderVerti-round" class="valDisplay"></span><span>&nbsp;</span>
+			<br/><br/>
+		</div>
+		<br/><br/>
+		<div id="slider3CtnrId" style="width:130px;height:20px;position:relative;left:10%;" >
+			<span id="slider3-round2" class="valDisplay"></span><span>&nbsp;</span>
+			<br/><br/>
+		</div>
+		<!-- Attached Slider -->
+		<!-- -->
+		<div id="sliderToBeAttachedId" style="background-color:#ddf; width:300px;"  >	
+			<div class="apixSlider_default">
+				<div class="bounds apix_bounds"></div>
+				<div class="bar"></div>
+				<div  class="bLeft apix_selector"><img draggable="false" src="apix/default/Slider/asset/selector.png" alt="selector left"/></div>
+				<div class="bRight apix_selector"><img draggable="false" src="apix/default/Slider/asset/selector.png" alt="selector right"/> </div>	
+				
+			</div>
+		</div>
+		<!--  -->
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<!-- progressBar container -->
+		<div id="progressCtnrId" style="width:200px;height:20px;position:relative;" >
+			
+		</div>
+		<div id="info"  >
+			
+		</div>
+		
+		<!--  -->
+		<!-- test Haxe --> 
+		<div id="haxe:trace" ></div>	
+		<!--  main haxe -->	
+		<script type="text/javascript" src="js/main.js"></script>	
+	</body>
+</html>

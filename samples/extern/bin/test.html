@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="charset=UTF-8" />    
+    <title>Mesh transform HAXE babylonJs 3d</title>
+	<!--  -->
+	<style>
+		html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        #renderCanvas {
+            width: 100%;
+            height: 77%;
+        }
+		* {
+		  font-family : Arial, Helvetica, sans-serif;
+		  font-size : 14px;
+		  color: #000;
+		}
+		
+	</style>
+  </head>
+  <body id="bodyId">
+	<!--  -->
+	<!--  -->
+	<canvas id="renderCanvas"></canvas>
+	<div id="control">
+		<h1 style="font-size:1.3em;">CAMERA'S ACTIONS</h1>
+		
+		<p>TRANSLATIONS:</p>
+		<span> (</span>
+		<button id="goCam" type="button">GO(z+)</button>
+		<button id="backCam" type="button">BACK(z-)</button>
+		<button id="leftCam" type="button">LEFT(x-)</button>
+		<button id="rightCam" type="button">RIGHT(x+)</button><span> Or use arrow keys)&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<button id="upCam" type="button">UP(y+)</button>
+		<button id="downCam" type="button">DOWN(y-)</button> 
+		
+		
+		<p>ROTATIONS:</p>
+		<button id="leftRotCam" type="button">TURN LEFT (y-)</button>
+		<button id="rightRotCam" type="button">TURN RIGHT(y+)</button>
+		<button id="upRotCam" type="button">SWING UP(x-)</button>
+		<button id="downRotCam" type="button">SWING DOWN(x+)</button><span> Or use mouse.</span>	
+		<h1 style="text-align:center">Under Google Chrome : Call this file in a local or online web server running. 
+		 Not directly from the file system 
+		</h1>	
+		<h1 style="text-align:center">Under Firefox it could be necessary to active WebGl : Enter "about:config" in the adress bar and set "webgl.force-enabled" to true.
+		</h1>
+	</div>	
+
+	<!--  -->
+	<!-- ajouter la balise de l'API -->
+	<script src="js/babylon.1.5.0.js"></script> 	
+	<!--  -->
+	<!-- VOIR  babylonx.cameras.Camera.hx -->
+	<!--  -->
+	<!--  -->
+	<script type="text/javascript" src="js/test.js"></script>	  
+		
+  </body>
+</html>
