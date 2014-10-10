@@ -29,20 +29,20 @@ class Main {
 		var i = 5;
 		var s:String;
 		//show
-		s = "Hello les "+i+" gars";
-		s.show();
+		"Hello les "+i+" gars".show();
 		//toFloat
-		s = "1.12e-5";
-		(s+"=" + s.toFloat()).trace();		
-		s = "0xFF";
-		(s + "=" + s.toFloat()).trace();		
-		s = "f";
-		(s+" hexa =" + s.toFloat(16)).trace();		
+		("1.12e-5=" + "1.12e-5".toFloat()).trace();	
+		//
+		s = "0xFF"; (s + "=" + s.toFloat()).trace();	
+		//
+		("f hexa =" + "f".toFloat(16)).trace();		
+		//
 		//splitx
 		trace("bateau,ciseaux,torro,sacramento".splitx(",") ); 
 		//
 		//
 		//
+		// REVENIR au PPT / PDF
 		//
 		//
 		// Exemples réels

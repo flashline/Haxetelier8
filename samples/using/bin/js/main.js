@@ -28,15 +28,12 @@ var Main = function() {
 	apix.common.util.Global.get().setupTrace();
 	var i = 5;
 	var s;
-	s = "Hello les " + i + " gars";
-	js.Lib.alert(s);
-	s = "1.12e-5";
-	haxe.Log.trace(s + "=" + StringX.toFloat(s),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
+	"Hello les " + i + Std.string(js.Lib.alert(" gars"));
+	haxe.Log.trace("1.12e-5=" + StringX.toFloat("1.12e-5"),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	s = "0xFF";
 	haxe.Log.trace(s + "=" + StringX.toFloat(s),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	s = "f";
-	haxe.Log.trace(s + " hexa =" + StringX.toFloat(s,16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace(StringX.splitx("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 42, className : "Main", methodName : "new"});
+	haxe.Log.trace("f hexa =" + StringX.toFloat("f",16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
+	haxe.Log.trace(StringX.splitx("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 41, className : "Main", methodName : "new"});
 	var _g = 0, _g1 = apix.common.util.StringExtender.all(".toto");
 	while(_g < _g1.length) {
 		var el = _g1[_g];
