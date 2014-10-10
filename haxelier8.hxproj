@@ -14,8 +14,6 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="C:\www\__HAXE\classes\Apix\" />
-    <class path="C:\www\__HAXE\classes\Babylon-X\" />
     <class path="C:\Program Files\haxe\haxe31\std\" />
   </classpaths>
   <!-- Build options -->
