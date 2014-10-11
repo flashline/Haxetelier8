@@ -15,10 +15,14 @@ package;
 import apix.common.util.Global;
 import js.html.Element;
 import js.html.Event;
-// ************
+//
+//
+// ***********
 using StringX;
-//import apix.common.util.StringExtender ;
-using apix.common.util.StringExtender ;
+// ***********
+//
+//
+//using apix.common.util.StringExtender ;
 // ************
 class Main {
 	function new () {	
@@ -29,7 +33,7 @@ class Main {
 		var i = 5;
 		var s:String;
 		//show
-		"Hello les "+i+" gars".show();
+		("Hello les "+i+" gars").show();
 		//toFloat
 		("1.12e-5=" + "1.12e-5".toFloat()).trace();	
 		//
@@ -42,15 +46,16 @@ class Main {
 		//
 		//
 		//
-		// REVENIR au PPT / PDF
+		// REVENIR au PPT / PDF pour Exemples cas réels
 		//
 		//
-		// Exemples réels
+		// Exemples réels (enlever // devant StringExtender
+		/*
 		// all()
 		for (el in ".toto".all()) { el.innerHTML="FOO"; }
 		// on() 
 		".toto".on("click", onClick, { txt:"TOTO" } );
-		
+		*/
 	}
 	function onClick (e:Event,data:Dynamic) {  
 		var elem:Element = cast(e.currentTarget, Element);

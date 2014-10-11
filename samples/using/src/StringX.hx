@@ -31,6 +31,5 @@ class StringX {
 		return arr;
 	}
 }
-// 4 - Mettre la ligne : "using StringX" dans le prog appelant (voir Main.hx) ;
+// 4 - Mettre la ligne : "using StringX" dans le prog appelant (voir ./Main.hx) ;
 // 
-// exemples réels : voir Main.hx
