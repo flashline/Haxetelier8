@@ -45,7 +45,6 @@ class Main {
 		trace("bateau,ciseaux,torro,sacramento".splitx(",") ); 
 		//
 		//
-		//
 		// REVENIR au PPT / PDF pour Exemples cas réels
 		//
 		//

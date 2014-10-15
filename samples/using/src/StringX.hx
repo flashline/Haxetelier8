@@ -1,7 +1,7 @@
 // Exemple pour étendre String.
 //
 // 1 - Créer une classe standard haxe
-// 2 - Usage: on ajoute toujours le même suffixe. Ex: ...Helper, ...Extender ou X
+// 2 - Usage pour le nom : on ajoute toujours le même suffixe. Ex: ...Helper, ...Extender ou X
 // 3 - Créer des fonctions static (méthodes de classes) et public ; dont le 1er paramètre est du type de la classe qu’on souhaite étendre.
 
 class StringX {		
@@ -24,12 +24,12 @@ class StringX {
 	// parler de inline si on a le temps.
 	//
 	// REMARQUE : On ne peut pas avec "using" surcharger une méthode existante.
-	// mais il est facile de se donner une convention. Ex: s.splitx() pour split
+	// 			  on peut juste ajouter une méthode similaire. Ex: s.splitx() pour split
 	public static function splitx (s:String,delim:String) :Array<String> {				
 		var arr:Array<String>=s.split(delim);
 		arr.insert(0, "--- Choix d'un texte ---");
 		return arr;
 	}
 }
-// 4 - Mettre la ligne : "using StringX" dans le prog appelant (voir ./Main.hx) ;
+// 4 - VOIR:  ./Main.hx pour "using StringX" dans le prog appelant.
 // 
