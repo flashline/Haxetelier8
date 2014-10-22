@@ -181,7 +181,7 @@ apix.common.display.ElementExtender.posx = function(el,v,bounds) {
 	var vx = apix.common.display.ElementExtender.numVal(v,null);
 	if(vx == null) {
 		if(el.offsetLeft != null) vx = el.offsetLeft; else if(el.clientLeft != null) vx = el.clientLeft; else if(el.scrollLeft != null) vx = el.scrollLeft; else vx = apix.common.display.ElementExtender.numVal(Std.parseFloat(el.style.left),null);
-		if(vx == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid left position !",{ fileName : "ElementExtender.hx", lineNumber : 251, className : "apix.common.display.ElementExtender", methodName : "posx"});
+		if(vx == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid left position !",{ fileName : "ElementExtender.hx", lineNumber : 256, className : "apix.common.display.ElementExtender", methodName : "posx"});
 	} else {
 		if(bounds != null) {
 			if(vx < bounds.get_x()) vx = bounds.get_x(); else if(vx > bounds.get_x() + bounds.get_width()) vx = bounds.get_x() + bounds.get_width();
@@ -194,7 +194,7 @@ apix.common.display.ElementExtender.posy = function(el,v,bounds) {
 	var vy = apix.common.display.ElementExtender.numVal(v,null);
 	if(vy == null) {
 		if(el.offsetTop != null) vy = el.offsetTop; else if(el.clientTop != null) vy = el.clientTop; else if(el.scrollTop != null) vy = el.scrollTop; else vy = apix.common.display.ElementExtender.numVal(Std.parseFloat(el.style.left),null);
-		if(vy == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid top position !",{ fileName : "ElementExtender.hx", lineNumber : 272, className : "apix.common.display.ElementExtender", methodName : "posy"});
+		if(vy == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid top position !",{ fileName : "ElementExtender.hx", lineNumber : 277, className : "apix.common.display.ElementExtender", methodName : "posy"});
 	} else {
 		if(bounds != null) {
 			if(vy < bounds.get_y()) vy = bounds.get_y(); else if(vy > bounds.get_y() + bounds.get_height()) vy = bounds.get_y() + bounds.get_height();
@@ -204,34 +204,34 @@ apix.common.display.ElementExtender.posy = function(el,v,bounds) {
 	return vy;
 }
 apix.common.display.ElementExtender.width = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 287, className : "apix.common.display.ElementExtender", methodName : "width"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 292, className : "apix.common.display.ElementExtender", methodName : "width"});
 	var w = apix.common.display.ElementExtender.numVal(v,null);
 	if(w == null) {
 		if(el.clientWidth != null) w = el.clientWidth; else if(el.offsetWidth != null) w = el.offsetWidth; else if(el.scrollWidth != null) w = el.scrollWidth; else w = apix.common.display.ElementExtender.numVal(Std.parseFloat(el.style.width),null);
-		if(w == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid width !",{ fileName : "ElementExtender.hx", lineNumber : 294, className : "apix.common.display.ElementExtender", methodName : "width"});
+		if(w == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid width !",{ fileName : "ElementExtender.hx", lineNumber : 299, className : "apix.common.display.ElementExtender", methodName : "width"});
 	} else el.style.width = Std.string(w) + "px";
 	return w;
 }
 apix.common.display.ElementExtender.height = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 303, className : "apix.common.display.ElementExtender", methodName : "height"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 308, className : "apix.common.display.ElementExtender", methodName : "height"});
 	var h = apix.common.display.ElementExtender.numVal(v,null);
 	if(h == null) {
 		if(el.clientHeight != null) h = el.clientHeight; else if(el.offsetHeight != null) h = el.offsetHeight; else if(el.scrollHeight != null) h = el.scrollHeight; else h = apix.common.display.ElementExtender.numVal(Std.parseFloat(el.style.height),null);
-		if(h == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid height !",{ fileName : "ElementExtender.hx", lineNumber : 310, className : "apix.common.display.ElementExtender", methodName : "height"});
+		if(h == null) haxe.Log.trace("f::Element " + el.id + " hasn't valid height !",{ fileName : "ElementExtender.hx", lineNumber : 315, className : "apix.common.display.ElementExtender", methodName : "height"});
 	} else el.style.height = Std.string(h) + "px";
 	return h;
 }
 apix.common.display.ElementExtender.parent = function(el) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 319, className : "apix.common.display.ElementExtender", methodName : "parent"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 324, className : "apix.common.display.ElementExtender", methodName : "parent"});
 	return el.parentElement;
 }
 apix.common.display.ElementExtender.inner = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 326, className : "apix.common.display.ElementExtender", methodName : "inner"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 331, className : "apix.common.display.ElementExtender", methodName : "inner"});
 	if(v == null) v = el.innerHTML; else el.innerHTML = v;
 	return v;
 }
 apix.common.display.ElementExtender.haveClass = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 335, className : "apix.common.display.ElementExtender", methodName : "haveClass"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 340, className : "apix.common.display.ElementExtender", methodName : "haveClass"});
 	var ex = false;
 	var _g = 0, _g1 = el.classList;
 	while(_g < _g1.length) {
@@ -242,25 +242,25 @@ apix.common.display.ElementExtender.haveClass = function(el,v) {
 	return ex;
 }
 apix.common.display.ElementExtender.addClass = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 346, className : "apix.common.display.ElementExtender", methodName : "addClass"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 351, className : "apix.common.display.ElementExtender", methodName : "addClass"});
 	if(apix.common.display.ElementExtender.haveClass(el,v)) return false; else {
 		el.classList.add(v);
 		return true;
 	}
 }
 apix.common.display.ElementExtender.removeClass = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 357, className : "apix.common.display.ElementExtender", methodName : "removeClass"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 362, className : "apix.common.display.ElementExtender", methodName : "removeClass"});
 	if(!apix.common.display.ElementExtender.haveClass(el,v)) return false; else {
 		el.classList.remove(v);
 		return true;
 	}
 }
 apix.common.display.ElementExtender.doOnTouchStart = function(el) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 368, className : "apix.common.display.ElementExtender", methodName : "doOnTouchStart"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 373, className : "apix.common.display.ElementExtender", methodName : "doOnTouchStart"});
 	apix.common.display.ElementExtender.addClass(el,"apix_do_when_touch");
 }
 apix.common.display.ElementExtender.doOnTouchEnd = function(el) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 372, className : "apix.common.display.ElementExtender", methodName : "doOnTouchEnd"});
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 377, className : "apix.common.display.ElementExtender", methodName : "doOnTouchEnd"});
 	apix.common.display.ElementExtender.removeClass(el,"apix_do_when_touch");
 }
 apix.common.display.ElementExtender.addLst = function(srcEvt,type,listenerFunction,b,data) {

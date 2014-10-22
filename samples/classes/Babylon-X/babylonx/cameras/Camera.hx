@@ -9,7 +9,7 @@ import babylonx.tools.math.Matrix;
 //
 //1-écrire devant "class"
 //	@:native (“<nom réel de la classe en JS ou autre langage>”) 
-//		facultatif si ce nom natif est exactement le même que celui de la classe Haxe (il doit commencer par une majuscule) .
+//		facultatif si le nom et package natifs sont les mêmes que ceux de la classe Haxe (nom doit commencer par une majuscule en haxe) 
 //		ce qui n'est pas le cas ici.
 // 	puis "extern"
 //	
@@ -39,7 +39,7 @@ extern class Camera {
 	//mais doivent être correctement typées ; sinon aucun intérêt !
 	public function attachControl (canvas:CanvasElement, ?noPreventDefault:Bool ):Void ;
 	public function detachControl (canvas:CanvasElement ):Void ;
-	public function _update(  ) : Dynamic;
+	public function _update() : Dynamic;
 	public function getViewMatrix(  ) : Matrix;
 	public function getProjectionMatrix(  ) : Matrix;
 	//
@@ -55,7 +55,8 @@ extern class Camera {
 	//				- au moins pour qu’elle passe la compilation.
 	//				- au mieux pour qu’elle soit correctement typée puisque c’est le but recherché !
 	//
-	//			Certaines APIs se prêtent mieux que d’autres à l’extern 'alisation.
+	//			Certaines APIs se prêtent mieux que d’autres à l’extern 'alisation :
+	//
 	//			soit parce qu’elles sont bien écrites  :
 	//				// voir js/babylon/mesh.js avec ses propiétés, méthodes, méthodes statics bien visibles et séparés.
 	//
@@ -67,7 +68,7 @@ extern class Camera {
 	//			Contrairement à ce que j'ai fait,
 	//			Il faut éviter de faire une extern sur une api trop jeune et non stabilisée.
 	//			on n'est pas obligé de faire toutes les classes et tous les membres d'un coup. 
-	//			Mais uniquement ce qu'on utilise. (ça évite d'inclure des fonctions private)
+	//			Mais uniquement ce qu'on utilise. (ça évite de trop en faire et d'(inclure des private)
 	//
 	// SUITE :	Astuces et problèmes concrets
 	// 			voir Scene.hx pour les typDef . 

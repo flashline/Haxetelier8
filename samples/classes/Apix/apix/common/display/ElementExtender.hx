@@ -161,7 +161,12 @@ class ElementExtender  {
 		return b;
 	}
 	
-		
+	/**
+	 * add child 
+	 */
+    public static function  addChild (el:Element,v:Element) : Element {	
+		return untyped el.appendChild(v);
+	}	
 	/**
 	 * remove all children 
 	 */
@@ -446,7 +451,6 @@ class ElementExtender  {
 	}	
 	public static function removeLst(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false)  {			
 		if ( !removeDelegateListener(srcEvt, type, listenerFunction, b) ) {
-			// normally no possible
 			srcEvt.removeEventListener(type, listenerFunction, b);
 		}
 		if ((!hasLst (srcEvt)) ) handCursor(untyped srcEvt, false);

@@ -33,7 +33,7 @@ import js.html.Event;
 import js.html.MouseEvent;
 import apix.common.event.StandardEvent;
 //ici
-import custom.FreeCameraX;
+//import custom.FreeCameraX;
 //
 import babylonx.mesh.Mesh; import custom.MeshExtender; using custom.MeshExtender;
 //

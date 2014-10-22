@@ -24,8 +24,8 @@ class StringX {
 	// parler de inline si on a le temps.
 	//
 	// REMARQUE : On ne peut pas avec "using" surcharger une méthode existante.
-	// 			  on peut juste ajouter une méthode similaire. Ex: s.splitx() pour split
-	public static function splitx (s:String,delim:String) :Array<String> {				
+	// 			  on peut juste ajouter une méthode similaire. Ex: s.splitX() pour split
+	public static function splitX (s:String,delim:String) :Array<String> {				
 		var arr:Array<String>=s.split(delim);
 		arr.insert(0, "--- Choix d'un texte ---");
 		return arr;

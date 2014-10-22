@@ -1,10 +1,4 @@
 (function () { "use strict";
-function $extend(from, fields) {
-	function inherit() {}; inherit.prototype = from; var proto = new inherit();
-	for (var name in fields) proto[name] = fields[name];
-	if( fields.toString !== Object.prototype.toString ) proto.toString = fields.toString;
-	return proto;
-}
 var MeshTransform = function() {
 	var _g = this;
 	var noop = function () {} ;
@@ -605,17 +599,6 @@ custom.Face.prototype = {
 	}
 	,__class__: custom.Face
 }
-custom.FreeCameraX = function(name,position,scene) {
-	BABYLON.FreeCamera.call(this,name,position,scene);
-};
-custom.FreeCameraX.__name__ = true;
-custom.FreeCameraX.__super__ = BABYLON.FreeCamera;
-custom.FreeCameraX.prototype = $extend(BABYLON.FreeCamera.prototype,{
-	f1: function() {
-		console.log("f1 name=" + this.name);
-	}
-	,__class__: custom.FreeCameraX
-});
 custom.MeshExtender = function() { }
 custom.MeshExtender.__name__ = true;
 custom.MeshExtender.createVertexArray = function(m,unconditional) {

@@ -1,4 +1,18 @@
 (function () { "use strict";
+var EReg = function(r,opt) {
+	opt = opt.split("u").join("");
+	this.r = new RegExp(r,opt);
+};
+EReg.__name__ = true;
+EReg.prototype = {
+	match: function(s) {
+		if(this.r.global) this.r.lastIndex = 0;
+		this.r.m = this.r.exec(s);
+		this.r.s = s;
+		return this.r.m != null;
+	}
+	,__class__: EReg
+}
 var HxOverrides = function() { }
 HxOverrides.__name__ = true;
 HxOverrides.substr = function(s,pos,len) {
@@ -12,21 +26,34 @@ HxOverrides.substr = function(s,pos,len) {
 }
 var Main = function() {
 	apix.common.util.Global.get().setupTrace();
+	apix.common.display.ElementExtender.addChild(apix.common.util.StringExtender.get("#appliEmbedCtnr"),js.Browser.document.createElement("div")).setAttribute("class","title");
+	apix.common.util.StringExtender.get("#appliEmbedCtnr .title").textContent = "SALUT LES HAXEURS FOUS";
+	var _g = 0, _g1 = apix.common.util.StringExtender.all(".toto");
+	while(_g < _g1.length) {
+		var el = _g1[_g];
+		++_g;
+		el.innerHTML = "FOO";
+	}
+	apix.common.util.StringExtender.on(".toto","click",$bind(this,this.onClick),null,{ txt : "TOTO"});
 	var i = 5;
 	var s;
-	js.Lib.alert("Hello les " + i + " gars");
+	haxe.Log.trace("Hello les " + i + " gars",{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	haxe.Log.trace("1.12e-5=" + StringX.toFloat("1.12e-5"),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	s = "0xFF";
 	haxe.Log.trace(s + "=" + StringX.toFloat(s),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace("f hexa =" + StringX.toFloat("f",16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace(StringX.splitx("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 45, className : "Main", methodName : "new"});
+	haxe.Log.trace("F hexa =" + StringX.toFloat("f",16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
+	haxe.Log.trace(apix.common.util.StringExtender.splitX("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 69, className : "Main", methodName : "new"});
 };
 Main.__name__ = true;
 Main.main = function() {
 	new Main();
 }
 Main.prototype = {
-	__class__: Main
+	onClick: function(e,data) {
+		var elem = js.Boot.__cast(e.currentTarget , Element);
+		elem.innerHTML = data.txt;
+	}
+	,__class__: Main
 }
 var Std = function() { }
 Std.__name__ = true;
@@ -44,11 +71,6 @@ StringX.toFloat = function(s,base) {
 	if(base == 16) return Number('0x'+s) ;
 	return Std.parseFloat(s);
 }
-StringX.splitx = function(s,delim) {
-	var arr = s.split(delim);
-	arr.splice(0,0,"--- Choix d'un texte ---");
-	return arr;
-}
 var apix = {}
 apix.common = {}
 apix.common.display = {}
@@ -56,6 +78,54 @@ apix.common.display.Common = function() { }
 apix.common.display.Common.__name__ = true;
 apix.common.display.Common.get_body = function() {
 	return js.Browser.document.body;
+}
+apix.common.display.Common.get_userAgent = function() {
+	return js.Browser.navigator.userAgent;
+}
+apix.common.display.ElementExtender = function() { }
+apix.common.display.ElementExtender.__name__ = true;
+apix.common.display.ElementExtender.handCursor = function(el,v) {
+	if(v == null) v = true;
+	var str;
+	if(v) str = "pointer"; else str = "auto";
+	el.style.cursor = str;
+}
+apix.common.display.ElementExtender.addChild = function(el,v) {
+	return el.appendChild(v);
+}
+apix.common.display.ElementExtender.addLst = function(srcEvt,type,listenerFunction,b,data) {
+	if(b == null) b = false;
+	if(apix.common.event.StandardEvent.isMouseType(type)) apix.common.display.ElementExtender.handCursor(srcEvt);
+	var deleguateFunction = apix.common.display.ElementExtender.getLst(srcEvt,listenerFunction,data);
+	var el = srcEvt;
+	if(el.listeners == null) el.listeners = [];
+	el.listeners.push({ type : type, listenerFunction : listenerFunction, deleguateFunction : deleguateFunction});
+	srcEvt.addEventListener(type,deleguateFunction,b);
+}
+apix.common.display.ElementExtender.convertEventType = function(type) {
+	if(apix.common.util.Global.get().get_isMobile()) {
+		if(type == "mousedown") type = "touchstart"; else if(type == "mouseup") type = "touchend";
+	} else if(type == "touchstart") type = "mousedown"; else if(type == "touchend") type = "mouseup";
+	return type;
+}
+apix.common.display.ElementExtender.getLst = function(srcEvt,listenerFunction,data) {
+	var deleguateFunction;
+	if(data == null) deleguateFunction = listenerFunction; else deleguateFunction = function(e) {
+		listenerFunction.call(srcEvt,e,data);
+	};
+	return deleguateFunction;
+}
+apix.common.event = {}
+apix.common.event.StandardEvent = function() { }
+apix.common.event.StandardEvent.__name__ = true;
+apix.common.event.StandardEvent.isMouseType = function(v) {
+	var _g = 0, _g1 = ["click","dblclick","mousedown","mouseover"];
+	while(_g < _g1.length) {
+		var i = _g1[_g];
+		++_g;
+		if(i == v) return true;
+	}
+	return false;
 }
 apix.common.util = {}
 apix.common.util.Global = function() {
@@ -94,7 +164,10 @@ apix.common.util.Global.flnetTrace = function(v,i) {
 	}
 }
 apix.common.util.Global.prototype = {
-	setupTrace: function(ctnrId) {
+	get_isMobile: function() {
+		return new EReg("iPhone|ipad|iPod|Android|opera mini|blackberry|palm os|palm|hiptop|avantgo|plucker|xiino|blazer|elaine|iris|3g_t|opera mobi|windows phone|iemobile|mobile".toLowerCase(),"i").match(apix.common.display.Common.get_userAgent().toLowerCase());
+	}
+	,setupTrace: function(ctnrId) {
 		var ctnr;
 		if(this.empty(ctnrId)) ctnr = apix.common.display.Common.get_body(); else ctnr = js.Browser.document.getElementById(ctnrId);
 		if(ctnr != null) {
@@ -110,6 +183,34 @@ apix.common.util.Global.prototype = {
 		return false;
 	}
 	,__class__: apix.common.util.Global
+}
+apix.common.util.StringExtender = function() { }
+apix.common.util.StringExtender.__name__ = true;
+apix.common.util.StringExtender.on = function(v,type,listenerFunction,b,data,parent) {
+	if(b == null) b = false;
+	var nl;
+	nl = apix.common.util.StringExtender.all(v,parent);
+	var _g = 0;
+	while(_g < nl.length) {
+		var el = nl[_g];
+		++_g;
+		apix.common.display.ElementExtender.addLst(el,apix.common.display.ElementExtender.convertEventType(type),listenerFunction,b,data);
+	}
+}
+apix.common.util.StringExtender.all = function(v,parent) {
+	if(apix.common.util.StringExtender.rootHtmlElement == null) apix.common.util.StringExtender.rootHtmlElement = js.Browser.document.body;
+	if(parent == null) parent = apix.common.util.StringExtender.rootHtmlElement;
+	return parent.querySelectorAll(v);
+}
+apix.common.util.StringExtender.get = function(v,parent) {
+	if(apix.common.util.StringExtender.rootHtmlElement == null) apix.common.util.StringExtender.rootHtmlElement = js.Browser.document.body;
+	if(parent == null) parent = apix.common.util.StringExtender.rootHtmlElement;
+	return parent.querySelector(v);
+}
+apix.common.util.StringExtender.splitX = function(s,delim) {
+	var arr = s.split(delim);
+	arr.splice(0,0,"--- Choix d'un texte ---");
+	return arr;
 }
 var haxe = {}
 haxe.Log = function() { }
@@ -250,11 +351,8 @@ js.Boot.__cast = function(o,t) {
 }
 js.Browser = function() { }
 js.Browser.__name__ = true;
-js.Lib = function() { }
-js.Lib.__name__ = true;
-js.Lib.alert = function(v) {
-	alert(js.Boot.__string_rec(v,""));
-}
+var $_, $fid = 0;
+function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; };
 String.prototype.__class__ = String;
 String.__name__ = true;
 Array.prototype.__class__ = Array;
@@ -268,5 +366,6 @@ Bool.__ename__ = ["Bool"];
 var Class = { __name__ : ["Class"]};
 var Enum = { };
 js.Browser.document = typeof window != "undefined" ? window.document : null;
+js.Browser.navigator = typeof window != "undefined" ? window.navigator : null;
 Main.main();
 })();
