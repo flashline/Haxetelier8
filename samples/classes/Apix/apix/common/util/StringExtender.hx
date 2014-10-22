@@ -1,8 +1,9 @@
 /**
-*
+* Exemple pour "étendre" String.
 * Syntaxe:
 * 1 - Créer une classe standard haxe
-* 2 - Usage : nom de la class native auquel on ajoute toujours le même suffixe. Ex: ...Helper, ...Extender 
+* 2 - Usage : nom de la class native auquel on ajoute toujours le même suffixe. 
+* 		Ex: ...Helper, ...Extender 
 * 3 - Créer des fonctions static (méthodes de classes) et public ; 
 *     dont le 1er paramètre est du type de la classe qu’on souhaite étendre. 
 */
@@ -30,7 +31,8 @@ class StringExtender  {
 	 * (N'existe pas en JS ni en As3. Existe en jQuery)
 	 * 
 	 * ex:
-	 *  "div.menu".on("click",onClick,false,data) ; // pose le listener "onClick" sur toutes les div de classe CSS "menu" // en passant un objet dynamic "data"
+	 *  "div.menu".on("click",onClick,false,data) ; 
+	 *   // pose le listener "onClick" sur toutes les div de classe CSS "menu" // en passant un objet dynamic "data"
 	 *  ...
 	 *  function onClick (e:Event,data:Dynamic) {...}
 	 * 
@@ -53,7 +55,8 @@ class StringExtender  {
 	}
 	/**
 	 * off() est l'alias de removeEventListener et le pendant de on()
-	 * NB: Doit impérativement être utilisé si le paramètre "data" a été utilisé. Sinon on() est compatible avec removeEventListener()
+	 * NB: Doit impérativement être utilisé si le paramètre "data" a été utilisé. 
+	 *     Sinon on() est compatible avec removeEventListener()
 	 * 
 	 * @param	v					String instance -css syntax
 	 * @param	type							Event type
@@ -70,7 +73,8 @@ class StringExtender  {
 	}
 	/**
 	 * Renvoie un tableau d'élements "HtmlElement" correspondant à la String CSS.
-	 * Cette méthode est public mais sera plutôt utilisée en interne -rarement utilisée par les programmes appelants. cf: on() et off()
+	 * Cette méthode est public mais sera plutôt utilisée en interne -rarement utilisée par les programmes appelants.
+	 *   cf: on() et off()
 	 * 
 	 * @param	v				String instance -css syntax
 	 * @param	?parent = null	[Root Element]
