@@ -36,12 +36,14 @@ extern class Camera {
 	public var mode : Float;
 	//Les méthodes n'ont pas de corps donc pas de {} car le code est dans le .js
     public function new(name:String, position:Vector3, scene:Scene);
+	//
 	//mais doivent être correctement typées ; sinon aucun intérêt !
 	public function attachControl (canvas:CanvasElement, ?noPreventDefault:Bool ):Void ;
 	public function detachControl (canvas:CanvasElement ):Void ;
 	public function _update() : Dynamic;
 	public function getViewMatrix(  ) : Matrix;
 	public function getProjectionMatrix(  ) : Matrix;
+	//
 	//
 	//
 	// NOTES: 	
@@ -78,5 +80,5 @@ extern class Camera {
 	//
 	// Utilisation de Babylon 	
 	//		source	: 	extern/src/MeshTransform.hx ou Test.hx
-	// 		exe 	:   http://localhost/__HAXE/haxelier%208/samples/extern/bin/ ou http://www.pixaline.net/intra/3djs/
+	// 		exe 	:   http://localhost/__HAXE/haxelier8/samples/extern/bin/ ou http://www.pixaline.net/intra/3djs/
 }

@@ -14,15 +14,14 @@ import js.Browser;
 import js.html.Element;
 import js.html.NodeList;
 using apix.common.display.ElementExtender;
+using apix.common.util.StringExtender;
 /**
  * extends String usage in caller : using apix.common.util.StringExtender;
  */
 class StringExtender  {
 	static public var rootHtmlElement:Element;
 	/**
-	 * Exemple pour étendre String.
-	 * ---------------------------
-	 * 
+	 *
 	 * Si on considère que la String contient de la syntaxe CSS (système utilisé par jQuery ...et JS à présent) :
 	 * 
 	 * on() est un alias d'un addEventListener s'appliquant à tous les "Element" correspondant à la String CSS.
@@ -30,14 +29,14 @@ class StringExtender  {
 	 * un objet Dynamic ou typé (typDef) peut être passé en paramètre, qui sera transmis à la fonction "listener".
 	 * (N'existe pas en JS ni en As3. Existe en jQuery)
 	 * 
-	 * ex:
+	 *
 	 *  "div.menu".on("click",onClick,false,data) ; 
 	 *   // pose le listener "onClick" sur toutes les div de classe CSS "menu" // en passant un objet dynamic "data"
 	 *  ...
 	 *  function onClick (e:Event,data:Dynamic) {...}
 	 * 
 	 * Le corps de la fonction est assez court car  
-	 * el.on() est lui-même un "using" de Element  ; (voir plus haut et apix.common.display.ElementExtender.hx )
+	 * une méthode on() a aussi été ajoutée à Element ;
 	 * 
 	 * @param	v					String instance -css syntax
 	 * @param	type							Event type
@@ -45,11 +44,13 @@ class StringExtender  {
 	 * @param	?b								use capture true/false
 	 * @param	?data				Dynamic or typdef parameter to listener
 	 * @param	?parent=null		[Root Element] used to embed app in any html pages.
+	 * 
+	 * @usage 	"div.menu".on("click",onClick,false,data) ; 	 
 	 */
 	public static function on (v:String,type:String, listenerFunction:Dynamic, ?b:Bool = false, ?data:Dynamic = null,?parent=null) {
-		var nl:Array<Element>;	
-		nl = all (v, parent);	
-		for (el in nl) {
+		var arr:Array<Element>;	
+		arr = all (v, parent);	// arr = v.all(parent) ; // 
+		for (el in arr) {
 			el.on(type, listenerFunction, b, data);
 		}
 	}
@@ -63,11 +64,13 @@ class StringExtender  {
 	 * @param	listenerFunction				listener function
 	 * @param	?b								use capture true/false
 	 * @param	?parent=null		[Root Element] used to embed app in any html pages.
+	 * 
+	 * @usage 	"div.menu".off("click",onClick,false) ; 
 	 */
-	public static function off (v:String,type:String, listenerFunction:Dynamic, ?b:Bool = false,?parent=null) {
-		var nl:Array<Element>;
-		nl = all (v, parent);	
-		for (el in nl) {
+	public static function off (v:String,type:String, listenerFunction:Dynamic, ?b:Bool = false, ?parent=null) {
+		var arr:Array<Element>;
+		arr = all (v, parent);	
+		for (el in arr) {
 			el.off(type, listenerFunction, b);
 		}
 	}
@@ -79,10 +82,13 @@ class StringExtender  {
 	 * @param	v				String instance -css syntax
 	 * @param	?parent = null	[Root Element]
 	 * @return					an Array of Element
+	 * 
+	 * @usage 	for (el in ".toto".all()) { el.innerHTML = "FOO"; }
 	 */
 	public static function all (v:String, ?parent = null) :Array<Element> {
 		if (rootHtmlElement == null) rootHtmlElement = Browser.document.body;
-		if (parent == null) parent = rootHtmlElement;	
+		if (parent == null) parent = rootHtmlElement;
+		//
 		return untyped parent.querySelectorAll(v);	
 	}
 	/**
@@ -92,11 +98,17 @@ class StringExtender  {
 	 * @param	v				String instance -css syntax
 	 * @param	?parent = null	[Root Element]
 	 * @return					an Element
+	 * 
+	 * @usage 	"#appliEmbedCtnr .title".get().textContent = "Hello !";	
 	 */
 	public static function get (v:String,?parent=null):Element{
 		if (rootHtmlElement == null) rootHtmlElement = Browser.document.body;
-		if (parent == null) parent = rootHtmlElement;		
-		return untyped parent.querySelector(v);	
+		if (parent == null) parent = rootHtmlElement;	
+		//
+		var el:Element = untyped parent.querySelector(v) ;
+		//
+		if (el == null) trace ("f::Element is null !"); 
+		return el ;
 	}
 	//
 	//
@@ -113,13 +125,17 @@ class StringExtender  {
 	 * @param	v	String instance -css syntax
 	 * @param	?p 	Slider properties typdef
 	 * @return 		instance of Slider
+	 * 
+	 * @usage	var s:Slider = "#sliderVertiCtnrId".slider() ; ~ var s:Slider = new Slider( { into:"#sliderVertiCtnrId"  } )
 	 */
 	public static function slider (v:String,?p:SliderProp) :Slider {
 		if (p == null) p = { };
 		p.into = v;
 		return new Slider	(p); 
 	}
-
+	/**
+	* [ VOIR:  samples/UICompo/src/Main.hx ]
+	*/
 /**
 * REMARQUES
 * 
@@ -129,20 +145,25 @@ class StringExtender  {
 * 
 * - On peut avoir plusieurs classes "using" pour une même classe native. 
 * 
-* - La fonction on() utilise elle-même la fonction all().
+* - La fonction on() utilise elle-même la fonction all()... Attention: arr = v.all(parent); // ERREUR  mais:	arr = all (v, parent); // CORRECT	
+		
 * 
 * - On ne peut pas avec "using", simuler l'override (surcharge) d'une méthode existante. Ex: l'ajout d'une méthode split n'aurait aucun effet.
 *   on peu juste faire :
 */
+	/*
 	public static function splitX (s:String,delim:String) :Array<String> {				
 		var arr:Array<String>=s.split(delim);
 		arr.insert(0, "--- Choix d'un texte ---");
 		return arr;
 	}
+	*/
 }
+
+//
+//
 /**
-* VOIR:  
-* . / Main.hx pour "using StringExtender" dans le prog appelant et test.
+* RETOUR ODP ...
 */
 
 

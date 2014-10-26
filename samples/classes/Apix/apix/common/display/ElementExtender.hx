@@ -164,7 +164,8 @@ class ElementExtender  {
 	/**
 	 * add child 
 	 */
-    public static function  addChild (el:Element,v:Element) : Element {	
+    public static function  addChild (el:Element, v:Element) : Element {	
+		if (el == null) { trace ("f::Element is null !"); }	
 		return untyped el.appendChild(v);
 	}	
 	/**
@@ -442,27 +443,27 @@ class ElementExtender  {
 	 * @param	?b
 	 * @param	?data
 	 */
-	public static function addLst(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false, ?data:Dynamic = null) {
+	public static function on(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false, ?data:Dynamic = null) {
 		if (StandardEvent.isMouseType(type)) handCursor(untyped srcEvt);		
 		var deleguateFunction:EventListener = getLst(srcEvt, listenerFunction, data);
 		var el:Dynamic=untyped srcEvt;if (el.listeners == null) el.listeners = [];
 		el.listeners.push( {type:type, listenerFunction:listenerFunction, deleguateFunction:deleguateFunction } );		
 		srcEvt.addEventListener(type, deleguateFunction, b );
 	}	
-	public static function removeLst(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false)  {			
+	public static function off(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false)  {			
 		if ( !removeDelegateListener(srcEvt, type, listenerFunction, b) ) {
 			srcEvt.removeEventListener(type, listenerFunction, b);
 		}
 		if ((!hasLst (srcEvt)) ) handCursor(untyped srcEvt, false);
 	}
 	/**
-	 * alias of addLst and removeLst
+	 * alias of on()  and off()
 	 */
-	public static inline function on(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false, ?data:Dynamic = null) {		
-		addLst(srcEvt,convertEventType(type), listenerFunction, b, data);
+	public static inline function addLst(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false, ?data:Dynamic = null) {		
+		on(srcEvt,convertEventType(type), listenerFunction, b, data);
 	}
-	public static inline function off(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false)  {			
-		removeLst(srcEvt,convertEventType(type), listenerFunction, b);
+	public static inline function removeLst(srcEvt:EventTarget, type:String, listenerFunction:Dynamic, ?b:Bool = false)  {			
+		off(srcEvt,convertEventType(type), listenerFunction, b);
 	}
 	/**
 	 * <b>returns true</b> if at least one listener exists.

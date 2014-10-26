@@ -15,6 +15,7 @@
   <classpaths>
     <class path="src" />
     <class path="C:\Program Files\haxe\haxe31\std\" />
+    <class path="C:\www\__HAXE\classes\Apix\" />    
   </classpaths>
   <!-- Build options -->
   <build>

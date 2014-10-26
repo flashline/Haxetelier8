@@ -1,18 +1,4 @@
 (function () { "use strict";
-var EReg = function(r,opt) {
-	opt = opt.split("u").join("");
-	this.r = new RegExp(r,opt);
-};
-EReg.__name__ = true;
-EReg.prototype = {
-	match: function(s) {
-		if(this.r.global) this.r.lastIndex = 0;
-		this.r.m = this.r.exec(s);
-		this.r.s = s;
-		return this.r.m != null;
-	}
-	,__class__: EReg
-}
 var HxOverrides = function() { }
 HxOverrides.__name__ = true;
 HxOverrides.substr = function(s,pos,len) {
@@ -37,12 +23,12 @@ var Main = function() {
 	apix.common.util.StringExtender.on(".toto","click",$bind(this,this.onClick),null,{ txt : "TOTO"});
 	var i = 5;
 	var s;
-	haxe.Log.trace("Hello les " + i + " gars",{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
+	haxe.Log.trace("Hello les gars",{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	haxe.Log.trace("1.12e-5=" + StringX.toFloat("1.12e-5"),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	s = "0xFF";
 	haxe.Log.trace(s + "=" + StringX.toFloat(s),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
 	haxe.Log.trace("F hexa =" + StringX.toFloat("f",16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace(apix.common.util.StringExtender.splitX("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 69, className : "Main", methodName : "new"});
+	haxe.Log.trace(StringX.splitX("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 71, className : "Main", methodName : "new"});
 };
 Main.__name__ = true;
 Main.main = function() {
@@ -71,6 +57,11 @@ StringX.toFloat = function(s,base) {
 	if(base == 16) return Number('0x'+s) ;
 	return Std.parseFloat(s);
 }
+StringX.splitX = function(s,delim) {
+	var arr = s.split(delim);
+	arr.splice(0,0,"--- Choix d'un texte ---");
+	return arr;
+}
 var apix = {}
 apix.common = {}
 apix.common.display = {}
@@ -78,9 +69,6 @@ apix.common.display.Common = function() { }
 apix.common.display.Common.__name__ = true;
 apix.common.display.Common.get_body = function() {
 	return js.Browser.document.body;
-}
-apix.common.display.Common.get_userAgent = function() {
-	return js.Browser.navigator.userAgent;
 }
 apix.common.display.ElementExtender = function() { }
 apix.common.display.ElementExtender.__name__ = true;
@@ -91,9 +79,10 @@ apix.common.display.ElementExtender.handCursor = function(el,v) {
 	el.style.cursor = str;
 }
 apix.common.display.ElementExtender.addChild = function(el,v) {
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 168, className : "apix.common.display.ElementExtender", methodName : "addChild"});
 	return el.appendChild(v);
 }
-apix.common.display.ElementExtender.addLst = function(srcEvt,type,listenerFunction,b,data) {
+apix.common.display.ElementExtender.on = function(srcEvt,type,listenerFunction,b,data) {
 	if(b == null) b = false;
 	if(apix.common.event.StandardEvent.isMouseType(type)) apix.common.display.ElementExtender.handCursor(srcEvt);
 	var deleguateFunction = apix.common.display.ElementExtender.getLst(srcEvt,listenerFunction,data);
@@ -101,12 +90,6 @@ apix.common.display.ElementExtender.addLst = function(srcEvt,type,listenerFuncti
 	if(el.listeners == null) el.listeners = [];
 	el.listeners.push({ type : type, listenerFunction : listenerFunction, deleguateFunction : deleguateFunction});
 	srcEvt.addEventListener(type,deleguateFunction,b);
-}
-apix.common.display.ElementExtender.convertEventType = function(type) {
-	if(apix.common.util.Global.get().get_isMobile()) {
-		if(type == "mousedown") type = "touchstart"; else if(type == "mouseup") type = "touchend";
-	} else if(type == "touchstart") type = "mousedown"; else if(type == "touchend") type = "mouseup";
-	return type;
 }
 apix.common.display.ElementExtender.getLst = function(srcEvt,listenerFunction,data) {
 	var deleguateFunction;
@@ -164,10 +147,7 @@ apix.common.util.Global.flnetTrace = function(v,i) {
 	}
 }
 apix.common.util.Global.prototype = {
-	get_isMobile: function() {
-		return new EReg("iPhone|ipad|iPod|Android|opera mini|blackberry|palm os|palm|hiptop|avantgo|plucker|xiino|blazer|elaine|iris|3g_t|opera mobi|windows phone|iemobile|mobile".toLowerCase(),"i").match(apix.common.display.Common.get_userAgent().toLowerCase());
-	}
-	,setupTrace: function(ctnrId) {
+	setupTrace: function(ctnrId) {
 		var ctnr;
 		if(this.empty(ctnrId)) ctnr = apix.common.display.Common.get_body(); else ctnr = js.Browser.document.getElementById(ctnrId);
 		if(ctnr != null) {
@@ -188,13 +168,13 @@ apix.common.util.StringExtender = function() { }
 apix.common.util.StringExtender.__name__ = true;
 apix.common.util.StringExtender.on = function(v,type,listenerFunction,b,data,parent) {
 	if(b == null) b = false;
-	var nl;
-	nl = apix.common.util.StringExtender.all(v,parent);
+	var arr;
+	arr = apix.common.util.StringExtender.all(v,parent);
 	var _g = 0;
-	while(_g < nl.length) {
-		var el = nl[_g];
+	while(_g < arr.length) {
+		var el = arr[_g];
 		++_g;
-		apix.common.display.ElementExtender.addLst(el,apix.common.display.ElementExtender.convertEventType(type),listenerFunction,b,data);
+		apix.common.display.ElementExtender.on(el,type,listenerFunction,b,data);
 	}
 }
 apix.common.util.StringExtender.all = function(v,parent) {
@@ -205,12 +185,9 @@ apix.common.util.StringExtender.all = function(v,parent) {
 apix.common.util.StringExtender.get = function(v,parent) {
 	if(apix.common.util.StringExtender.rootHtmlElement == null) apix.common.util.StringExtender.rootHtmlElement = js.Browser.document.body;
 	if(parent == null) parent = apix.common.util.StringExtender.rootHtmlElement;
-	return parent.querySelector(v);
-}
-apix.common.util.StringExtender.splitX = function(s,delim) {
-	var arr = s.split(delim);
-	arr.splice(0,0,"--- Choix d'un texte ---");
-	return arr;
+	var el = parent.querySelector(v);
+	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "StringExtender.hx", lineNumber : 110, className : "apix.common.util.StringExtender", methodName : "get"});
+	return el;
 }
 var haxe = {}
 haxe.Log = function() { }
@@ -366,6 +343,5 @@ Bool.__ename__ = ["Bool"];
 var Class = { __name__ : ["Class"]};
 var Enum = { };
 js.Browser.document = typeof window != "undefined" ? window.document : null;
-js.Browser.navigator = typeof window != "undefined" ? window.navigator : null;
 Main.main();
 })();

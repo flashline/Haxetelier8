@@ -17,24 +17,26 @@ import js.Browser;
 import js.html.Element;
 import js.html.Event;
 //
-//
-// ***********
 using StringX;
-// ***********
-//
-//
 using apix.common.display.ElementExtender ;
+//
+//
+//
+//
+/**
+ * using de la classe qui "étend" String -même syntaxe qu'un import.
+ */
 using apix.common.util.StringExtender ;
-// ************
+// 
+//
 class Main {
 	function new () {	
 		Global.get().setupTrace();
+		//					
 		//
-		// Principe		
+		// Exemples réels dans programme appelant.
 		//
-		//
-		// Exemples réels
-		// VOIR sample/using/bin/index.html avant exécution. Puis Chrome dev tool.
+		// VOIR sample/using/bin/index.html avant exécution. Ouvrir Chrome dev tools quand démo.
 		//
 		// get()
 		"#appliEmbedCtnr".get().addChild(Browser.document.createDivElement()).setAttribute("class", "title");
@@ -52,13 +54,12 @@ class Main {
 		// Voir rapidement sample/UIComposrc/Main.hx
 		//
 		//
-		//
 		// Exemples haxetelier 8
 		//
 		var i = 5;
 		var s:String;
 		//show
-		("Hello les "+i+" gars").trace();
+		"Hello les gars".trace();
 		//toFloat
 		("1.12e-5=" + "1.12e-5".toFloat()).trace();	
 		//
@@ -69,9 +70,11 @@ class Main {
 		//splitx
 		trace("bateau,ciseaux,torro,sacramento".splitX(",")); 
 		//
+		// VOIR la ligne "using" (ci-dessus). 
+		// 
+		// VOIR samples/classes/Apix/apix/common/util/StringExtender.hx
 		//
-		// Retour sur .odp
-		/**/
+		//
 	}
 	function onClick (e:Event,data:Dynamic) {  
 		var elem:Element = cast(e.currentTarget, Element);
