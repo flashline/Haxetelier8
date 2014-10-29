@@ -110,6 +110,12 @@ class StringExtender  {
 		if (el == null) trace ("f::Element is null !"); 
 		return el ;
 	}
+	public static inline function alert (s:String) {
+		js.Lib.alert(s);
+	}
+	public static inline function trace (s:String) {
+		trace(s);
+	}
 	//
 	//
 	// UICompo

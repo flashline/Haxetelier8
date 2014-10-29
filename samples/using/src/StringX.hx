@@ -16,9 +16,9 @@ class StringX {
 		if (s.substring(0, 2) == "0x" ) {			
 			return untyped __js__("Number(s) ") ;
 		}
-		if (base == 16) {			
+		else if (base == 16) {			
 			return untyped __js__("Number('0x'+s) ") ;
-		}		
+		}
 		return Std.parseFloat(s);
 	}
 	// parler de inline si on a le temps.

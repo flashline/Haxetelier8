@@ -12,7 +12,7 @@ HxOverrides.substr = function(s,pos,len) {
 }
 var Main = function() {
 	apix.common.util.Global.get().setupTrace();
-	apix.common.display.ElementExtender.addChild(apix.common.util.StringExtender.get("#appliEmbedCtnr"),js.Browser.document.createElement("div")).setAttribute("class","title");
+	apix.common.display.NodeExtender.setAttribute(apix.common.util.StringExtender.get("#appliEmbedCtnr").appendChild(js.Browser.document.createElement("div")),"class","title");
 	apix.common.util.StringExtender.get("#appliEmbedCtnr .title").textContent = "SALUT LES HAXEURS FOUS";
 	var _g = 0, _g1 = apix.common.util.StringExtender.all(".toto");
 	while(_g < _g1.length) {
@@ -21,14 +21,6 @@ var Main = function() {
 		el.innerHTML = "FOO";
 	}
 	apix.common.util.StringExtender.on(".toto","click",$bind(this,this.onClick),null,{ txt : "TOTO"});
-	var i = 5;
-	var s;
-	haxe.Log.trace("Hello les gars",{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace("1.12e-5=" + StringX.toFloat("1.12e-5"),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	s = "0xFF";
-	haxe.Log.trace(s + "=" + StringX.toFloat(s),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace("F hexa =" + StringX.toFloat("f",16),{ fileName : "StringX.hx", lineNumber : 12, className : "StringX", methodName : "trace"});
-	haxe.Log.trace(StringX.splitX("bateau,ciseaux,torro,sacramento",","),{ fileName : "Main.hx", lineNumber : 71, className : "Main", methodName : "new"});
 };
 Main.__name__ = true;
 Main.main = function() {
@@ -46,22 +38,6 @@ Std.__name__ = true;
 Std.string = function(s) {
 	return js.Boot.__string_rec(s,"");
 }
-Std.parseFloat = function(x) {
-	return parseFloat(x);
-}
-var StringX = function() { }
-StringX.__name__ = true;
-StringX.toFloat = function(s,base) {
-	if(base == null) base = 10;
-	if(s.substring(0,2) == "0x") return Number(s) ;
-	if(base == 16) return Number('0x'+s) ;
-	return Std.parseFloat(s);
-}
-StringX.splitX = function(s,delim) {
-	var arr = s.split(delim);
-	arr.splice(0,0,"--- Choix d'un texte ---");
-	return arr;
-}
 var apix = {}
 apix.common = {}
 apix.common.display = {}
@@ -78,10 +54,6 @@ apix.common.display.ElementExtender.handCursor = function(el,v) {
 	if(v) str = "pointer"; else str = "auto";
 	el.style.cursor = str;
 }
-apix.common.display.ElementExtender.addChild = function(el,v) {
-	if(el == null) haxe.Log.trace("f::Element is null !",{ fileName : "ElementExtender.hx", lineNumber : 168, className : "apix.common.display.ElementExtender", methodName : "addChild"});
-	return el.appendChild(v);
-}
 apix.common.display.ElementExtender.on = function(srcEvt,type,listenerFunction,b,data) {
 	if(b == null) b = false;
 	if(apix.common.event.StandardEvent.isMouseType(type)) apix.common.display.ElementExtender.handCursor(srcEvt);
@@ -97,6 +69,13 @@ apix.common.display.ElementExtender.getLst = function(srcEvt,listenerFunction,da
 		listenerFunction.call(srcEvt,e,data);
 	};
 	return deleguateFunction;
+}
+apix.common.display.NodeExtender = function() { }
+apix.common.display.NodeExtender.__name__ = true;
+apix.common.display.NodeExtender.setAttribute = function(n,attr,value) {
+	var el = n;
+	el.setAttribute(attr,value);
+	return el;
 }
 apix.common.event = {}
 apix.common.event.StandardEvent = function() { }

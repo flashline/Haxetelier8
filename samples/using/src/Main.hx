@@ -18,7 +18,9 @@ import js.html.Element;
 import js.html.Event;
 //
 using StringX;
-using apix.common.display.ElementExtender ;
+using apix.common.display.NodeExtender;
+//using apix.common.display.ElementExtender ;
+using apix.common.util.FloatExtender ;
 //
 //
 //
@@ -33,13 +35,13 @@ class Main {
 	function new () {	
 		Global.get().setupTrace();
 		//					
-		//
+		//		
 		// Exemples réels dans programme appelant.
 		//
 		// VOIR sample/using/bin/index.html avant exécution. Ouvrir Chrome dev tools quand démo.
 		//
 		// get()
-		"#appliEmbedCtnr".get().addChild(Browser.document.createDivElement()).setAttribute("class", "title");
+		"#appliEmbedCtnr".get().appendChild(Browser.document.createDivElement()).setAttribute("class", "title");
 		//
 		"#appliEmbedCtnr .title".get().textContent = "SALUT LES HAXEURS FOUS";
 		//
@@ -56,22 +58,29 @@ class Main {
 		//
 		// Exemples haxetelier 8
 		//
-		var i = 5;
+		/*
 		var s:String;
-		//show
+		//alert et trace
+		"Hello les gars".alert();
 		"Hello les gars".trace();
 		//toFloat
-		("1.12e-5=" + "1.12e-5".toFloat()).trace();	
+		("1.12e-5=" 			+ "1.12e-5".toFloat()).trace();	
 		//
-		s = "0xFF"; (s + "=" + s.toFloat()).trace();	
+		("0xFF=" 				+ "0xFF".toFloat()).trace();	
 		//
-		("F hexa =" + "f".toFloat(16)).trace();		
+		("F hexa =" 			+ "f".toFloat(16)).trace();		
 		//
 		//splitx
-		trace("bateau,ciseaux,torro,sacramento".splitX(",")); 
+		trace("bateau,ciseaux,torro,sacramento".splitX(",")) ;
 		//
+		// transforme un flottant en string de n'importe quelle base.
+		var fn:Float = 255.32;
+		trace(fn.string(16));
+		trace(fn.string(8));
+		trace(fn.string(2));
 		// VOIR la ligne "using" (ci-dessus). 
-		// 
+		*/ 
+		//
 		// VOIR samples/classes/Apix/apix/common/util/StringExtender.hx
 		//
 		//
